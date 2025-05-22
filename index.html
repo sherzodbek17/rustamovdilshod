@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Rustamov Dilshod - Yuk tashish xizmati</title>
+    <style>
+        :root {
+            --main-color: #f9b233;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px;
+        }
+
+        header,
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #1f1f1f;
+            border: 2px #f9b233 solid;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: var(--main-color);
+        }
+
+        .lang-toggle {
+            margin: 10px 0;
+        }
+
+        .lang-toggle button {
+            margin: 0 5px;
+            padding: 6px 12px;
+            border: none;
+            background: var(--main-color);
+            color: #000;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .section {
+            max-width: 700px;
+            margin: 20px auto;
+
+        }
+
+        .header_container {
+            display: flex;
+            align-items: center;
+            margin: 0 auto;
+            max-width: 430px;
+            justify-content: space-between;
+
+        }
+
+        .slider-container {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #000;
+            border: 2px #f9b233 solid;
+        }
+
+        .slider-images {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%;
+        }
+
+        .slider-images img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            flex-shrink: 0;
+            background: #000;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            font-size: 2em;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 2;
+            border-radius: 50%;
+        }
+
+        .slider-btn.left {
+            left: 10px;
+        }
+
+        .slider-btn.right {
+            right: 10px;
+        }
+
+        .card,
+        .form-box {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 2px #f9b233 solid;
+        }
+
+
+        .order-btn,
+        .submit-btn {
+            margin-top: 10px;
+            background: var(--main-color);
+            color: black;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 10px;
+
+        }
+
+        footer .buttons {
+            width: 400px;
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+            justify-content: space-between;
+        }
+
+        footer .buttons button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #f9b233;
+            border: none;
+        }
+
+        footer .buttons button a {
+            text-decoration: none;
+            color: black;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #2c2c2c;
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .slider-btn {
+                font-size: 1.5em;
+                padding: 8px;
+            }
+
+            footer .buttons {
+                width: 300px;
+            }
+
+            footer .buttons button {
+                padding: 6px 14px;
+
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div style="display: flex;" class="header_container">
+            <img src="logotip.jpg" alt="" style="width: 100px; height: 100px; border-radius: 50%; border: 1px #f9b233 solid;">
+            <h1 id="title">Rustamov Dilshod</h1>
+
+        </div>
+        <div class="lang-toggle">
+            <h4 style="padding: 20px;">Tilni tanlang - Выберите язык</h4>
+            <button onclick="setLang('uz')">🇺🇿 </button>
+            <button onclick="setLang('ru')">🇷🇺 </button>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="slider-container">
+            <div class="slider-images" id="slider">
+                <img src="1.jpg" alt="rasm 1">
+                <img src="2.jpg" alt="rasm 2">
+                <img src="3.jpg" alt="rasm 3">
+                <img src="4.jpg" alt="rasm 4">
+            </div>
+            <button class="slider-btn left" onclick="prevSlide()">&#10094;</button>
+            <button class="slider-btn right" onclick="nextSlide()">&#10095;</button>
+        </div>
+
+        <div class="card">
+            <p id="desc" style="text-align: center; padding: 5px;">Toshkent viloyati, Chinoz tumanida yuk yuklash, tushirish,
+                chiqindi tashish va boshqa xizmatlar. Ish
+                haqi soatbay.</p>
+            <p style="text-align: center;"><strong id="tel">Telefon:</strong> <a href="tel:+998977652510"
+                    style="color: var(--main-color); text-decoration: none;">+998 97 765 25 10</a></p>
+        </div>
+
+        <div class="form-box">
+            <h3 id="form-title" style="text-align: center;">Buyurtma shakli</h3>
+            <input type="text" id="name" placeholder="Ismingiz va familyangiz">
+            <input type="text" id="location" placeholder="Hududingiz (shahar/tuman)">
+            <input type="text" id="phone" placeholder="Telefon raqamingiz">
+            <button class="submit-btn" onclick="submitOrder()" id="submit-btn">Yuborish</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="buttons">
+            <button><i class="fa-brands fa-telegram"></i> <a href="https://t.me/@Doos_tik040uz" id="telegram"> Telegram</a></button>
+            <button><i class="fa-brands fa-square-instagram"></i> <a
+                    href="https://www.instagram.com/rustamov_official090" id="instagram"> Instagram</a></button>
+            <button><i class="fa-solid fa-phone"></i> <a href="tel:+998977652510" id="call"> Telefon<a/></button>
+        </div>
+    </footer>
+
+    <script>
+        const slider = document.getElementById("slider");
+        const slides = slider.children;
+        let index = 0;
+
+        function updateSlide() {
+            slider.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        function nextSlide() {
+            index = (index + 1) % slides.length;
+            updateSlide();
+        }
+
+        function prevSlide() {
+            index = (index - 1 + slides.length) % slides.length;
+            updateSlide();
+        }
+
+        // Avtomatik o‘zgarish har 5 soniyada
+        setInterval(nextSlide, 5000);
+
+        const content = {
+            uz: {
+                title: "Rustamov Dilshod",
+                desc: "Toshkent viloyati, Chinozda yuk yuklash, tushirish, chiqindi tashish va boshqa xizmatlar. Ish haqi soatbay.",
+                tel: "Telefon:",
+                formTitle: "Buyurtma shakli",
+                placeholders: {
+                    name: "Ismingiz va familyangiz",
+                    location: "Hududingiz (shahar/tuman)",
+                    phone: "Telefon raqamingiz"
+                },
+                submit: "Yuborish",
+                telegram: "Telegram",
+                instagram: "Instagram",
+                call: "Telefon"
+            },
+            ru: {
+                title: "Рустамов Дильшод",
+                desc: "Грузовые услуги в районе Чиназ, Ташкентская область: погрузка, разгрузка, вывоз строительного мусора и прочее. Оплата почасовая.",
+                tel: "Телефон:",
+                formTitle: "Форма заказа",
+                placeholders: {
+                    name: "Ваше имя и фамилия",
+                    location: "Ваш район / город",
+                    phone: "Ваш номер телефона"
+                },
+                submit: "Отправить",
+                telegram: "Телеграм",
+                instagram: "Инстаграм",
+                call: "Телефон"
+            }
+        };
+
+        function setLang(lang) {
+            document.getElementById('title').innerText = content[lang].title;
+            document.getElementById('desc').innerText = content[lang].desc;
+            document.getElementById('tel').innerText = content[lang].tel;
+            document.getElementById('form-title').innerText = content[lang].formTitle;
+            document.getElementById('name').placeholder = content[lang].placeholders.name;
+            document.getElementById('location').placeholder = content[lang].placeholders.location;
+            document.getElementById('phone').placeholder = content[lang].placeholders.phone;
+            document.getElementById('submit-btn').innerText = content[lang].submit;
+            document.getElementById('telegram').innerText = content[lang].telegram;
+            document.getElementById('instagram').innerText = content[lang].instagram;
+            document.getElementById('call').innerText = content[lang].call;
+        }
+
+        function submitOrder() {
+            const name = document.getElementById('name').value.trim();
+            const location = document.getElementById('location').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+
+            if (!name || !location || !phone) {
+                alert("Iltimos, barcha maydonlarni to‘ldiring!");
+                return;
+            }
+
+            const message = `📦 Yangi buyurtma!\n\n👤 Ism: ${name}\n📍 Hudud: ${location}\n📞 Telefon: ${phone}`;
+            const token = "7551545975:AAHA21mmM1TEB_f4vUMIwqBd-TEy1-7ZffA";
+            const chat_id = "7380593368";
+
+            fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    chat_id: chat_id,
+                    text: message
+                })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.ok) {
+                        alert("✅ Buyurtmangiz yuborildi!");
+                        document.getElementById('name').value = '';
+                        document.getElementById('location').value = '';
+                        document.getElementById('phone').value = '';
+                    } else {
+                        alert("❌ Bot token yoki chat ID xato.");
+                    }
+                })
+                .catch(err => {
+                    alert("❌ Internetda muammo bor. Qaytadan urinib ko‘ring.");
+                    console.error(err);
+                });
+        }
+    </script>
+</body>
+
+</html>
